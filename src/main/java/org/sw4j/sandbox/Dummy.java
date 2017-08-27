@@ -11,4 +11,10 @@ package org.sw4j.sandbox;
  */
 public class Dummy {
 
+    /**
+     * Default constructor.
+     */
+    public Dummy() {
+    }
+
 }
