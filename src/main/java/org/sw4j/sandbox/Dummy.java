@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.sw4j.sandbox;
 
 /**
+ * A dummy class in the sandbox to test GitHub integration.
  *
- * @author uwe
+ * @author Uwe Plonus &lt;u.plonus@gmail.com&gt;
  */
 public class Dummy {
 
