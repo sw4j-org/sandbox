@@ -20,6 +20,9 @@
 
     <!-- Test dependency versions -->
     <testng.version>6.9.13.6</testng.version>
+
+    <!-- Plugin versions -->
+    <surefire.plugin.version>2.19.1</surefire.plugin.version>
   </properties>
 
   <dependencies>
@@ -28,6 +31,24 @@
       <artifactId>testng</artifactId>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <dependencyManagement>
     <dependencies>
