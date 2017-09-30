@@ -9,11 +9,15 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scm
+        sh """
+          git submodule init
+          git submodule update
+        """
       }
     }
     stage('Build') {
       steps {
-        withMaven(jdk: 'Current JDK 7',
+        withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
           sh "mvn clean compile"
@@ -22,7 +26,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        withMaven(jdk: 'Current JDK 7',
+        withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
           sh "mvn test"
@@ -31,7 +35,7 @@ pipeline {
     }
     stage('Integration Test') {
       steps {
-        withMaven(jdk: 'Current JDK 7',
+        withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
           sh "mvn verify"
@@ -40,7 +44,7 @@ pipeline {
     }
     stage('Artifact Install (for Reports)') {
       steps {
-        withMaven(jdk: 'Current JDK 7',
+        withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
           sh "mvn install"
