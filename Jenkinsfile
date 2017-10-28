@@ -12,6 +12,7 @@ pipeline {
         sh """
           git submodule init
           git submodule update
+          printenv
         """
       }
     }
