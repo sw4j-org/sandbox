@@ -52,5 +52,14 @@ pipeline {
         }
       }
     }
+    stage('Deploy') {
+      when {
+        environment name: 'CHANGE_FORK', value: ''
+        expression { GIT_URL ==~ 'https://github.com/sw4j-org/.*' }
+      }
+      steps {
+        echo 'Deploy the artifact'
+      }
+    }
   }
 }
