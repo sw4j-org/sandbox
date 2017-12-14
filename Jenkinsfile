@@ -52,5 +52,13 @@ pipeline {
         }
       }
     }
+    stage('Deploy') {
+      when {
+        environment name: 'CHANGE_FORK' value: ''
+      }
+      steps {
+        echo 'Deploy the artifact'
+      }
+    }
   }
 }
