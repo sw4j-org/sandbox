@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>sw4j.org sandbox - Project Summary</title>
+    <title>sw4j.org sandbox - Dependency Information</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -54,8 +54,8 @@
                           <a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
             </li>
                       <li class="none">
-                          <a href="dependency-info.html" title="Dependency Information">Dependency Information</a>
-            </li>
+            <strong>Dependency Information</strong>
+          </li>
                       <li class="none">
                           <a href="dependency-management.html" title="Dependency Management">Dependency Management</a>
             </li>
@@ -72,8 +72,8 @@
                           <a href="plugins.html" title="Plugins">Plugins</a>
             </li>
                       <li class="none">
-            <strong>Summary</strong>
-          </li>
+                          <a href="project-summary.html" title="Summary">Summary</a>
+            </li>
               </ul>
         </li>
                                                                                       <li class="collapsed">
@@ -90,46 +90,43 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section">
-<h2>Project Summary<a name="Project_Summary"></a></h2><a name="Project_Summary"></a>
+<h2>Dependency Information<a name="Dependency_Information"></a></h2><a name="Dependency_Information"></a>
 <div class="section">
-<h3>Project Information<a name="Project_Information"></a></h3><a name="Project_Information"></a>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
-<tr class="b">
-<td>Name</td>
-<td>sw4j.org sandbox</td></tr>
-<tr class="a">
-<td>Description</td>
-<td>-</td></tr>
-<tr class="b">
-<td>Homepage</td>
-<td>-</td></tr></table></div>
+<h3>Apache Maven<a name="Apache_Maven"></a></h3><a name="Apache_Maven"></a>
+<div class="source">
+<pre>&lt;dependency&gt;
+  &lt;groupId&gt;org.sw4j.sandbox&lt;/groupId&gt;
+  &lt;artifactId&gt;sandbox&lt;/artifactId&gt;
+  &lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</pre></div></div>
 <div class="section">
-<h3>Project Organization<a name="Project_Organization"></a></h3><a name="Project_Organization"></a>
-<p>This project does not belong to an organization.</p></div>
+<h3>Apache Buildr<a name="Apache_Buildr"></a></h3><a name="Apache_Buildr"></a>
+<div class="source">
+<pre>'org.sw4j.sandbox:sandbox:jar:0.1.0-SNAPSHOT'</pre></div></div>
 <div class="section">
-<h3>Build Information<a name="Build_Information"></a></h3><a name="Build_Information"></a>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
-<tr class="b">
-<td>GroupId</td>
-<td>org.sw4j.sandbox</td></tr>
-<tr class="a">
-<td>ArtifactId</td>
-<td>sandbox</td></tr>
-<tr class="b">
-<td>Version</td>
-<td>0.1.0-SNAPSHOT</td></tr>
-<tr class="a">
-<td>Type</td>
-<td>jar</td></tr>
-<tr class="b">
-<td>Java Version</td>
-<td>1.8</td></tr></table></div></div>
+<h3>Apache Ivy<a name="Apache_Ivy"></a></h3><a name="Apache_Ivy"></a>
+<div class="source">
+<pre>&lt;dependency org=&quot;org.sw4j.sandbox&quot; name=&quot;sandbox&quot; rev=&quot;0.1.0-SNAPSHOT&quot;&gt;
+  &lt;artifact name=&quot;sandbox&quot; type=&quot;jar&quot; /&gt;
+&lt;/dependency&gt;</pre></div></div>
+<div class="section">
+<h3>Groovy Grape<a name="Groovy_Grape"></a></h3><a name="Groovy_Grape"></a>
+<div class="source">
+<pre>@Grapes(
+@Grab(group='org.sw4j.sandbox', module='sandbox', version='0.1.0-SNAPSHOT')
+)</pre></div></div>
+<div class="section">
+<h3>Gradle/Grails<a name="GradleGrails"></a></h3><a name="GradleGrails"></a>
+<div class="source">
+<pre>compile 'org.sw4j.sandbox:sandbox:0.1.0-SNAPSHOT'</pre></div></div>
+<div class="section">
+<h3>Scala SBT<a name="Scala_SBT"></a></h3><a name="Scala_SBT"></a>
+<div class="source">
+<pre>libraryDependencies += &quot;org.sw4j.sandbox&quot; % &quot;sandbox&quot; % &quot;0.1.0-SNAPSHOT&quot;</pre></div></div>
+<div class="section">
+<h3>Leiningen<a name="Leiningen"></a></h3><a name="Leiningen"></a>
+<div class="source">
+<pre>[org.sw4j.sandbox/sandbox &quot;0.1.0-SNAPSHOT&quot;]</pre></div></div></div>
       </div>
     </div>
     <div class="clear">
