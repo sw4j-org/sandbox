@@ -81,5 +81,6 @@ pipeline {
         mimeType: 'text/plain',
         attachLog: true,
         compressLog: true
+    }
   }
 }
