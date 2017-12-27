@@ -62,4 +62,24 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      script {
+        if (currentBuild.result == null) {
+          currentBuild.result = 'SUCCESS'    
+        }
+      }
+      emailext notifyEveryUnstableBuild: true,
+        to: 'ci@sw4j.org',
+        recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                             [$class: 'DevelopersRecipientProvider'],
+                             [$class: 'FailingTestSuspectsRecipientProvider'],
+                             [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
+        replyTo: 'ci@sw4j.org',
+        subject: '${DEFAULT_SUBJECT}',
+        body: '${DEFAULT_CONTENT}',
+        mimeType: 'text/plain',
+        attachLog: true,
+        compressLog: true
+  }
 }
