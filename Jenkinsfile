@@ -69,18 +69,12 @@ pipeline {
           currentBuild.result = 'SUCCESS'    
         }
       }
-      emailext notifyEveryUnstableBuild: true,
-        to: 'ci@sw4j.org',
-        recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+      step([$class: 'Mailer',
+            notifyEveryUnstableBuild: true,
+            recipients: emailextrecipients([[$class: 'CulpritsRecipientProvider'],
                              [$class: 'DevelopersRecipientProvider'],
                              [$class: 'FailingTestSuspectsRecipientProvider'],
-                             [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-        replyTo: 'ci@sw4j.org',
-        subject: '${DEFAULT_SUBJECT}',
-        body: '${DEFAULT_CONTENT}',
-        mimeType: 'text/plain',
-        attachLog: true,
-        compressLog: true
+                             [$class: 'FirstFailingBuildSuspectsRecipientProvider']])])
     }
   }
 }
