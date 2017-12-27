@@ -7,8 +7,6 @@ package org.sw4j.sandbox;
  */
 public class Dummy {
 
-    final String x;
-
     /**
      * Default constructor.
      */
