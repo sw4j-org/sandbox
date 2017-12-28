@@ -13,4 +13,8 @@ public class Dummy {
     public Dummy() {
     }
 
+    public int method() {
+        return 0;
+    }
+
 }
