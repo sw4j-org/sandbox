@@ -15,9 +15,9 @@ public class Dummy {
 
     /**
      * A test method.
-     * @param value1
-     * @param value2
-     * @return
+     * @param value1 a boolean value.
+     * @param value2 another boolean value.
+     * @return an integer.
      */
     public int method(final boolean value1, final boolean value2) {
         if (value1) {
