@@ -188,7 +188,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>scm:git:https://github.com/sw4j-org/sandbox.git</url>
+      <url>scm:git:git@github.com:sw4j-org/sandbox.git</url>
     </site>
   </distributionManagement>
 
