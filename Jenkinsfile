@@ -22,7 +22,7 @@ pipeline {
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
           sh "mvn -Dmaven.test.failure.ignore=true clean install"
-          step([$class: 'Publisher', reportFilenamePattern: '**/custom/testng-results.xml'])
+          step([$class: 'Publisher'])
         }
       }
     }
