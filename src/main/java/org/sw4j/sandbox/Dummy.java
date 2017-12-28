@@ -22,7 +22,7 @@ public class Dummy {
         } else if (value2) {
             return 2;
         }
-        return 1;
+        return 0;
     }
 
 }
