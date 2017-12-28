@@ -44,9 +44,21 @@ public class DummyNGTest {
     }
 
     @Test
-    public void testMethod() {
+    public void testMethodTF() {
         Dummy dummy = new Dummy();
-        Assert.assertEquals(dummy.method(true), 0);
+        Assert.assertEquals(dummy.method(true, false), 0);
+    }
+
+    @Test
+    public void testMethodFT() {
+        Dummy dummy = new Dummy();
+        Assert.assertEquals(dummy.method(false, true), 0);
+    }
+
+    @Test
+    public void testMethodTT() {
+        Dummy dummy = new Dummy();
+        Assert.assertEquals(dummy.method(true, true), 0);
     }
 
 }
