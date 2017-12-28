@@ -18,14 +18,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        script {
-          buildStep {
-            doChecksytle = true
-            doSpotbugs = false
-            doJacoco = false
-            doPmd = false
-          }
-        }
+        buildStep()
+        doCheckstyle()
       }
     }
     stage('Deploy') {
