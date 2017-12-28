@@ -7,10 +7,19 @@ package org.sw4j.sandbox;
  */
 public class Dummy {
 
+    /**
+     * Default constructor.
+     */
     public Dummy() {
     }
 
-    public int method(boolean value1, boolean value2) {
+    /**
+     * A test method.
+     * @param value1
+     * @param value2
+     * @return
+     */
+    public int method(final boolean value1, final boolean value2) {
         if (value1) {
             if (value2) {
                 return 3;
