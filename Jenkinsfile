@@ -21,14 +21,17 @@ pipeline {
         withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn clean install"
+          sh "mvn -Dmaven.test.failure.ignore=true clean install"
+          step([$class: 'Publisher', reportFilenamePattern: '**/custom/testng-results.xml'])
         }
       }
     }
     stage('Deploy') {
+      // run this stage only when on master in the original repository and build is successful
       when {
         environment name: 'CHANGE_FORK', value: ''
         expression { GIT_URL ==~ 'https://github.com/sw4j-org/.*' }
+        expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
       }
       steps {
         echo 'Deploy the artifact'
