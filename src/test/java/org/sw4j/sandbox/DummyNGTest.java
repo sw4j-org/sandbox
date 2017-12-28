@@ -40,7 +40,7 @@ public class DummyNGTest {
     @Test
     public void testSomeMethod() {
         Dummy dummy = new Dummy();
-//        Assert.fail("Fail to test email sending");
+        Assert.fail("Fail to test email sending");
     }
 
 }
