@@ -18,83 +18,33 @@ pipeline {
     }
     stage('Build') {
       steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn clean compile"
-        }
-      }
-    }
-    stage('Test') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn test"
-        }
-      }
-    }
-    stage('Integration Test') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn verify"
-        }
-      }
-    }
-    stage('Artifact Install (for Reports)') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn install"
-        }
+        buildStep()
+        doCheckstyle()
       }
     }
     stage('Deploy') {
+      // run this stage only when on master in the original repository and build is successful
       when {
         environment name: 'CHANGE_FORK', value: ''
         expression { GIT_URL ==~ 'https://github.com/sw4j-org/.*' }
+        expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
       }
       steps {
         echo 'Deploy the artifact'
+        sshagent(['4cab8b17-578f-49fc-908b-0e318625d63b']) {
+          withMaven(jdk: 'Current JDK 8',
+                  maven: 'Current Maven 3',
+                  mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/',
+                  globalMavenSettingsConfig: '03c863c2-c19c-4ed5-bc3a-7650b8f73ecf') {
+            sh "mvn post-site scm-publish:publish-scm"
+          }
+        }
       }
     }
   }
   post {
     always {
-      script {
-        if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
-          if (currentBuild.previousBuild != null && currentBuild.previousBuild.result != 'SUCCESS') {
-            emailext (
-              to: 'ci@sw4j.org',
-              recipientProviders: [[$class: 'CulpritsRecipientProvider'],
-                                   [$class: 'DevelopersRecipientProvider'],
-                                   [$class: 'FailingTestSuspectsRecipientProvider'],
-                                   [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-              replyTo: 'ci@sw4j.org',
-              subject: '${DEFAULT_SUBJECT}',
-              body: '${DEFAULT_CONTENT}',
-              mimeType: 'text/plain',
-              attachLog: true,
-              compressLog: true)
-          }
-        } else {
-          emailext (
-            to: 'ci@sw4j.org',
-            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
-                                 [$class: 'DevelopersRecipientProvider'],
-                                 [$class: 'FailingTestSuspectsRecipientProvider'],
-                                 [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-            replyTo: 'ci@sw4j.org',
-            subject: '${DEFAULT_SUBJECT}',
-            body: '${DEFAULT_CONTENT}',
-            mimeType: 'text/plain',
-            attachLog: true,
-            compressLog: true)
-        }
-      }
+      resultMailer()
     }
   }
 }

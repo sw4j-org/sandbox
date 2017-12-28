@@ -5,6 +5,7 @@
  */
 package org.sw4j.sandbox;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -39,6 +40,7 @@ public class DummyNGTest {
     @Test
     public void testSomeMethod() {
         Dummy dummy = new Dummy();
+//        Assert.fail("Fail to test email sending");
     }
 
 }
