@@ -21,34 +21,7 @@ pipeline {
         withMaven(jdk: 'Current JDK 8',
             maven: 'Current Maven 3',
             mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn clean compile"
-        }
-      }
-    }
-    stage('Test') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn test"
-        }
-      }
-    }
-    stage('Integration Test') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn verify"
-        }
-      }
-    }
-    stage('Artifact Install (for Reports)') {
-      steps {
-        withMaven(jdk: 'Current JDK 8',
-            maven: 'Current Maven 3',
-            mavenLocalRepo: '${JENKINS_HOME}/maven-repositories/${EXECUTOR_NUMBER}/') {
-          sh "mvn install"
+          sh "mvn clean install"
         }
       }
     }
