@@ -46,7 +46,7 @@ public class DummyNGTest {
     @Test
     public void testMethod() {
         Dummy dummy = new Dummy();
-        Assert.assertEquals(dummy.method(), 1);
+        Assert.assertEquals(dummy.method(), 0);
     }
 
 }
