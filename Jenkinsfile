@@ -18,7 +18,12 @@ pipeline {
     }
     stage('Build') {
       steps {
-        buildStep(doSpotbugs = false, doPmd = false, doJacoco = false)
+        buildStep {
+            doChecksytle = true
+            doSpotbugs = false
+            doJacoco = false
+            doPmd = false
+        }
       }
     }
     stage('Deploy') {
