@@ -43,10 +43,10 @@ public class DummyNGTest {
 //        Assert.fail("Fail to test email sending");
     }
 
-    @Test(enabled = false)
+    @Test
     public void testMethod() {
         Dummy dummy = new Dummy();
-        Assert.assertEquals(dummy.method(), 0);
+        Assert.assertEquals(dummy.method(true), 0);
     }
 
 }

@@ -13,8 +13,11 @@ public class Dummy {
     public Dummy() {
     }
 
-    public int method() {
-        return 0;
+    public int method(boolean value) {
+        if (value) {
+            return 0;
+        }
+        return 1;
     }
 
 }
