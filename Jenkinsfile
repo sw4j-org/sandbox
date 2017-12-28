@@ -36,6 +36,8 @@ pipeline {
     }
   }
   post {
-    resultMailer()
+    always {
+      resultMailer()
+    }
   }
 }
