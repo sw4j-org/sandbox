@@ -36,14 +36,6 @@ pipeline {
     }
   }
   post {
-    always {
-      step([$class: 'Mailer',
-            notifyEveryUnstableBuild: true,
-            recipients: emailextrecipients([[$class: 'CulpritsRecipientProvider'],
-                                            [$class: 'DevelopersRecipientProvider'],
-                                            [$class: 'FailingTestSuspectsRecipientProvider'],
-                                            [$class: 'FirstFailingBuildSuspectsRecipientProvider']])
-      ])
-    }
+    resultMailer()
   }
 }
