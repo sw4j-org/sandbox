@@ -17,7 +17,9 @@ pipeline {
       }
     }
     stage('Build') {
-      buildStep()
+      steps {
+        buildStep()
+      }
     }
     stage('Deploy') {
       // run this stage only when on master in the original repository and build is successful
