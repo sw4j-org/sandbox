@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        buildStep()
+        buildStep(doSpotbugs = false, doPmd = false, doJacoco = false)
       }
     }
     stage('Deploy') {
