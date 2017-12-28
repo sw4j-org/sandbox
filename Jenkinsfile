@@ -64,37 +64,13 @@ pipeline {
   }
   post {
     always {
-      script {
-        if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
-          if (currentBuild.previousBuild != null && currentBuild.previousBuild.result != 'SUCCESS') {
-            emailext (
-              to: 'ci@sw4j.org',
-              recipientProviders: [[$class: 'CulpritsRecipientProvider'],
-                                   [$class: 'DevelopersRecipientProvider'],
-                                   [$class: 'FailingTestSuspectsRecipientProvider'],
-                                   [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-              replyTo: 'ci@sw4j.org',
-              subject: '${DEFAULT_SUBJECT}',
-              body: '${DEFAULT_CONTENT}',
-              mimeType: 'text/plain',
-              attachLog: true,
-              compressLog: true)
-          }
-        } else {
-          emailext (
-            to: 'ci@sw4j.org',
-            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
-                                 [$class: 'DevelopersRecipientProvider'],
-                                 [$class: 'FailingTestSuspectsRecipientProvider'],
-                                 [$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-            replyTo: 'ci@sw4j.org',
-            subject: '${DEFAULT_SUBJECT}',
-            body: '${DEFAULT_CONTENT}',
-            mimeType: 'text/plain',
-            attachLog: true,
-            compressLog: true)
-        }
-      }
+      step([$class: 'Mailer',
+            notifyEveryUnstableBuild: true,
+            recipients: emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+                                            [$class: 'DevelopersRecipientProvider'],
+                                            [$class: 'FailingTestSuspectsRecipientProvider'],
+                                            [$class: 'FirstFailingBuildSuspectsRecipientProvider']])
+      ])
     }
   }
 }
