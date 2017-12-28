@@ -15,12 +15,12 @@ public class Dummy {
 
     public int method(boolean value1, boolean value2) {
         if (value1) {
+            if (value2) {
+                return 3;
+            }
             return 1;
         } else if (value2) {
             return 2;
-        }
-        if (value1 && value2) {
-            return 3;
         }
         return 1;
     }
